@@ -51,6 +51,15 @@
 ;; ;; For languages with significant whitespace like Python:
 ;; (setq org-src-preserve-indentation t)
 
+;; slime
+(setq inferior-lisp-program "/usr/bin/clisp") ; Lisp system, I prefer clisp
+(use-package slime
+  :init
+  (progn
+    (require 'slime)
+    (slime-setup)))
+
+;;
 (setq default-line-spacing 4)
 
 (custom-set-variables
@@ -63,7 +72,8 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (org auto-complete-c-headers yasnippet auto-complete))))
+    (slime org auto-complete-c-headers yasnippet auto-complete))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
