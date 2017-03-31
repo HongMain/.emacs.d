@@ -60,6 +60,18 @@
     (slime-setup)))
 
 ;;
+
+;; backup the oldest two versions and the most-recent five versions
+(setq version-control t) ; Use version numbers for backups
+(setq kept-old-versions 2) ; Number of oldest versions to keep
+(setq kept-new-versions 5) ; Number of newest versions to keep
+(setq delete-old-versions t) ; Delete too old versions
+(setq dired-kept-versions 1)
+(setq backup-directory-alist '(("." . "~/.emacs.d/emacs-backup")))
+(setq backup-by-copying t)
+(setq backup-by-copying-when-linked t) ; Copy linked files, don't rename.
+(setq backup-by-copying-when-mismatch t)
+
 (setq default-line-spacing 4)
 
 (custom-set-variables
@@ -73,6 +85,7 @@
  '(package-selected-packages
    (quote
     (slime org auto-complete-c-headers yasnippet auto-complete))))
+
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
