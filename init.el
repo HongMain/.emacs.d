@@ -25,12 +25,22 @@
 (require 'setup-editing)
 
 
-
 ;; function-args
 ;; (require 'function-args)
 ;; (fa-config-default)
 ;; (define-key c-mode-map  [(tab)] 'company-complete)
 ;; (define-key c++-mode-map  [(tab)] 'company-complete)
+
+;; backup the oldest two versions and the most-recent five versions
+(setq version-control t) ; Use version numbers for backups
+(setq kept-old-versions 2) ; Number of oldest versions to keep
+(setq kept-new-versions 5) ; Number of newest versions to keep
+(setq delete-old-versions t) ; Delete too old versions
+(setq dired-kept-versions 1)
+(setq backup-directory-alist '(("." . "~/.emacs.d/emacs-backup")))
+(setq backup-by-copying t)
+(setq backup-by-copying-when-linked t) ; Copy linked files, don't rename.
+(setq backup-by-copying-when-mismatch t)
 
 (setq default-line-spacing 4)
 
@@ -51,4 +61,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans" :foundry "PfEd" :slant normal :weight normal :height 158 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 143 :width normal)))))
