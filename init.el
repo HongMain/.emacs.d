@@ -1,11 +1,6 @@
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-(package-initialize)
+(add-to-list 'package-archives
+         '("melpa" . "http://melpa.org/packages/") t)
 
 (package-initialize)
 
@@ -18,59 +13,24 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; auto-complate
-(use-package auto-complete
-  :init
-  (progn
-    (require 'auto-complete)
-    (require 'auto-complete-config)
-    (ac-config-default)))
+(add-to-list 'load-path "~/.emacs.d/custom")
 
-;; yasnippet
-(use-package yasnippet
-  :init
-  (progn
-    (require 'yasnippet)
-    (yas-global-mode 1)))
+(require 'setup-general)
+(if (version< emacs-version "24.4")
+    (require 'setup-ivy-counsel)
+  (require 'setup-helm)
+  (require 'setup-helm-gtags))
+;; (require 'setup-ggtags)
+(require 'setup-cedet)
+(require 'setup-editing)
 
-;; define a function which initailizes auto-complete-c-headers and gets called for c/c++ hooks
-(defun my:ac-c-header-init ()
-  (require 'auto-complete-c-headers)
-  (add-to-list 'ac-source 'ac-source-c-headers))
-;; now call this function from c/c++ hooks
-(add-hook 'c++-mode-hook 'my:ac-c-header-init)
-(add-hook 'c-mode-hook 'my:ac-c-header-init)
 
-;; ;; org's LP features
-;; (org-babel-do-load-languages
-;;  'org-babel-load-languages
-;; '((emacs-lisp . t)
-;;  (clojure . t)))
-;; ;; Show syntax highlighting per language native mode in *.org
-;; (setq org-src-fontify-natively t)
-;; ;; For languages with significant whitespace like Python:
-;; (setq org-src-preserve-indentation t)
 
-;; slime
-(setq inferior-lisp-program "/usr/bin/clisp") ; Lisp system, I prefer clisp
-(use-package slime
-  :init
-  (progn
-    (require 'slime)
-    (slime-setup)))
-
-;;
-
-;; backup the oldest two versions and the most-recent five versions
-(setq version-control t) ; Use version numbers for backups
-(setq kept-old-versions 2) ; Number of oldest versions to keep
-(setq kept-new-versions 5) ; Number of newest versions to keep
-(setq delete-old-versions t) ; Delete too old versions
-(setq dired-kept-versions 1)
-(setq backup-directory-alist '(("." . "~/.emacs.d/emacs-backup")))
-(setq backup-by-copying t)
-(setq backup-by-copying-when-linked t) ; Copy linked files, don't rename.
-(setq backup-by-copying-when-mismatch t)
+;; function-args
+;; (require 'function-args)
+;; (fa-config-default)
+;; (define-key c-mode-map  [(tab)] 'company-complete)
+;; (define-key c++-mode-map  [(tab)] 'company-complete)
 
 (setq default-line-spacing 4)
 
@@ -84,15 +44,11 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (slime org auto-complete-c-headers yasnippet auto-complete))))
-
+    (zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Monaco" :foundry "DAMA" :slant normal :weight normal :height 181 :width normal)))))
-
-
-
+ '(default ((t (:family "DejaVu Sans" :foundry "PfEd" :slant normal :weight normal :height 158 :width normal)))))
