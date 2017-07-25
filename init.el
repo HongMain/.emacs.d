@@ -10,7 +10,7 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
-(setenv "PATH" (concat ".:/usr/local/bin:/opt/local/bin" (getenv "PATH")))
+(setenv "PATH" (concat ".:/usr/local/bin:/opt/local/bin:" (getenv "PATH")))
 (add-to-list 'exec-path "/usr/local/bin/")
 
 (require 'use-package)
