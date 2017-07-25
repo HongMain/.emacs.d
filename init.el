@@ -10,6 +10,9 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
+(setenv "PATH" (concat ".:/usr/local/bin:/opt/local/bin" (getenv "PATH")))
+(add-to-list 'exec-path "/usr/local/bin/")
+
 (require 'use-package)
 (setq use-package-always-ensure t)
 
@@ -18,11 +21,13 @@
 (require 'setup-general)
 (if (version< emacs-version "24.4")
     (require 'setup-ivy-counsel)
-  (require 'setup-helm)
-  (require 'setup-helm-gtags))
-;; (require 'setup-ggtags)
+  (require 'setup-helm))
+;;  (require 'setup-helm-gtags))
+(require 'setup-ggtags)
 (require 'setup-cedet)
 (require 'setup-editing)
+
+(require 'setup-c)
 
 
 ;; function-args
@@ -61,4 +66,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 143 :width normal)))))
+ '(default ((t (:family "Monaco" :foundry "DAMA" :slant normal :weight normal :height 181 :width normal)))))
