@@ -1,10 +1,18 @@
 ;; (menu-bar-mode -1)
-;; (tool-bar-mode -1)
+(tool-bar-mode -1)
 
 (setq gc-cons-threshold 100000000)
 (setq inhibit-startup-message t)
 
+;; (setq c-default-style "cc-mode")
+
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+(use-package smooth-scrolling
+  :init
+  (smooth-scrolling-mode 1)
+;;  (setq smooth-scroll-margin 5)
+)
 
 ;; show unncessary whitespace that can mess up your diff
 (add-hook 'prog-mode-hook
